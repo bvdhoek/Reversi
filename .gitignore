@@ -3,9 +3,10 @@
 !*.cs
 !*.csproj
 !*.sln
+!*.resx
+!*.settings
 !Reversi/app.config
 !.gitignore
 !*/
 
 */obj/*
-*/Properties/*
