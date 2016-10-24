@@ -1,0 +1,11 @@
+*
+
+!*.cs
+!*.csproj
+!*.sln
+!Reversi/app.config
+!.gitignore
+!*/
+
+*/obj/*
+*/Properties/*
