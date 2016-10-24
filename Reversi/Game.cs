@@ -23,8 +23,8 @@ namespace Reversi
 
         public void MakeMove(Point location)
         {
-            if (board.MakeMove(location, player)) 
-                player = !player;
+            if (board.MakeMove(location, player))
+                updatePlayer();
         }
 
         private bool GameOver()
@@ -39,6 +39,11 @@ namespace Reversi
                 }
             }
             return gameOver;
+        }
+
+        private void updatePlayer()
+        {
+            player = !player;
         }
 
         public bool?[,] getBoard()
