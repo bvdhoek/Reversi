@@ -49,9 +49,10 @@ namespace Reversi
         {
             if (move.X >= 2 && move.Y >= 2 && OccupiedByOtherPlayer(move.X - 1, move.Y - 1))
             {
-                for (int x = move.X - 2; x >= 0; x--)
+                int y = move.Y - 2;
+                for (int x = move.X - 2; x >= 0; x--, y--)
                 {
-                    if (OccupiedByCurrentPlayer(x, x - move.X + move.Y))
+                    if (OccupiedByCurrentPlayer(x, y))
                         return true;
                 }
             }
@@ -62,9 +63,10 @@ namespace Reversi
         {
             if (move.X <= board.width - 2 && move.Y >= 2 && OccupiedByOtherPlayer(move.X + 1, move.Y - 1))
             {
-                for (int x = move.X + 2; x < board.width; x++)
+                int y = move.Y - 2;
+                for (int x = move.X + 2; x < board.width; x++, y--)
                 {
-                    if (OccupiedByCurrentPlayer(x, move.Y - x + move.X))
+                    if (OccupiedByCurrentPlayer(x, y))
                         return true;
                 }
             }
@@ -75,9 +77,10 @@ namespace Reversi
         {
             if (move.X >= 2 && move.Y < board.height - 2 && OccupiedByOtherPlayer(move.X - 1, move.Y + 1))
             {
-                for (int x = move.X - 2; x >= 0; x--)
+                int y = move.Y + 2;
+                for (int x = move.X - 2; x >= 0; x--, y++)
                 {
-                    if (OccupiedByCurrentPlayer(x, move.X - x + move.Y))
+                    if (OccupiedByCurrentPlayer(x, y))
                         return true;
                 }
             }
@@ -88,9 +91,10 @@ namespace Reversi
         {
             if (move.X < board.width - 2 && move.Y < board.height - 2 && OccupiedByOtherPlayer(move.X + 1, move.Y + 1))
             {
-                for (int x = move.X + 2; x < board.width; x++)
+                int y = move.Y + 2;
+                for (int x = move.X + 2; x < board.width; x++, y++)
                 {
-                    if (OccupiedByCurrentPlayer(x, x - move.X + move.Y))
+                    if (OccupiedByCurrentPlayer(x, y))
                         return true;
                 }
             }
