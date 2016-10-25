@@ -1,74 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Reversi
 {
     class Board
     {
-        bool?[,] playingBoard;
+        private Game game;
+        public Tile[,] tiles { get; }
+        public int width { get; }
+        public int height { get; }
+
+        public Board(Game game, int boardWidth, int boardHight)
+        {
+            this.game = game;
+            width = boardWidth;
+            height = boardHight;
+            tiles = new Tile[boardWidth, boardHight];
+            initBoard();
+        }
 
         /* everything will be empty except for the four tiles in the center of the board
          * null null null null
-         * null   F   T   null
-         * null   T   F   null
+         * null black red null
+         * null black red null
          * null null null null
         */
-        public Board(int boardWidth, int boardHight)
+        private void initBoard()
         {
-            playingBoard = new bool?[boardWidth, boardHight];
-            for (int row = 0; row < boardWidth; row++)
+            for (int row = 0; row < width; row++)
             {
-                for (int column = 0; column < boardHight; column++)
+                for (int column = 0; column < height; column++)
                 {
-                    playingBoard[row, column] = null;
+                    tiles[row, column] = new Tile(null);
                 }
             }
-            Console.WriteLine(boardHight / 2 + ", " + boardHight / 2);
-            playingBoard[boardWidth / 2 - 1, boardHight / 2 - 1] = false;
-            playingBoard[boardWidth / 2, boardHight / 2 - 1] = true;
-            playingBoard[boardWidth / 2 - 1, boardHight / 2] = true;
-            playingBoard[boardWidth / 2, boardHight / 2] = false;
+            tiles[width / 2 - 1, height / 2 - 1] = new Tile(game.getPlayer(0));
+            tiles[width / 2, height / 2 - 1] = new Tile(game.getPlayer(1));
+            tiles[width / 2 - 1, height / 2] = new Tile(game.getPlayer(1));
+            tiles[width / 2, height / 2] = new Tile(game.getPlayer(0));
         }
 
-        public bool MakeMove(Point location, bool player)
+        public void MakeMove(Point move)
         {
-            if (ValidMove(location))
-            {
-                playingBoard[location.X, location.Y] = player;
-                return true;
-            }
-            return false;
+            tiles[move.X, move.Y] = new Tile(game.currentPlayer);
+            UpdateEnclosed(move);
         }
 
-        public bool ValidMove(Point location)
+        private void UpdateEnclosed(Point move)
         {
-            if (playingBoard[location.X, location.Y] != null)
-                return false;
-            return scanHorizontal(location.X, location.Y) || scanVertical(location.X, location.Y) || scanDiagonal(location.X, location.Y);
-        }
 
-        private bool scanHorizontal(int column, int row)
-        {
-            return true;
-        }
-
-        private bool scanVertical(int column, int row)
-        {
-            return true;
-        }
-
-        private bool scanDiagonal(int column, int row)
-        {
-            return true;
-        }
-
-        public bool?[,] toA()
-        {
-            return playingBoard;
         }
     }
 }
