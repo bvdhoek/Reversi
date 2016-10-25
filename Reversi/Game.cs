@@ -10,45 +10,58 @@ namespace Reversi
     class Game
     {
         Board board;
-        bool player;
-        int boardWidth, boardHight;
+        Player[] players = new Player[2];
+        MoveHandler moveHandler;
+        public Player currentPlayer;
 
         public Game(int boardWidth, int boardHight)
         {
-            player = true;
-            this.boardWidth = boardWidth;
-            this.boardHight = boardHight;
-            board = new Board(boardWidth, boardHight);
+            initPlayers();
+            Console.WriteLine("Current player: " + currentPlayer.color); 
+            board = new Board(this, boardWidth, boardHight);
+            moveHandler = new MoveHandler(this, board);
+        }
+
+        public Player[] Players
+        {
+            get { return players; }
+        }
+
+        public Player getPlayer(int playerNr)
+        {
+            return players[playerNr];
+        }
+
+        private void initPlayers()
+        {
+            players[0] = new Player(Color.Black);
+            players[1] = new Player(Color.Red);
+            currentPlayer = players[0];
         }
 
         public void MakeMove(Point location)
         {
-            if (board.MakeMove(location, player))
-                updatePlayer();
+            if (moveHandler.MakeMove(location))
+                UpdatePlayer();
         }
 
         private bool GameOver()
         {
-            bool gameOver = false;
-            for (int column = 0; column < boardWidth; column++)
-            {
-                for (int row = 0; row < boardHight; row++)
-                {
-                    if (board.ValidMove(new Point(column, row)))
-                        gameOver = true;
-                }
-            }
-            return gameOver;
+            return !moveHandler.AnyMoves(players[0]) && !moveHandler.AnyMoves(players[1]);
         }
 
-        private void updatePlayer()
+        public void UpdatePlayer()
         {
-            player = !player;
+            if (Array.IndexOf(players, currentPlayer) == 0)
+                currentPlayer = players[1];
+            else
+                currentPlayer = players[0];
+            Console.WriteLine("Current player: " + currentPlayer.color);
         }
 
-        public bool?[,] getBoard()
+        public Tile[,] getBoard()
         {
-            return board.toA();
+            return board.tiles;
         }
     }
 }
