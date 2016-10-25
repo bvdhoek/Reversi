@@ -48,6 +48,10 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="MoveHandler.cs" />
+    <Compile Include="MoveValidator.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Tile.cs" />
     <Compile Include="UserInterface.cs">
       <SubType>Form</SubType>
     </Compile>
