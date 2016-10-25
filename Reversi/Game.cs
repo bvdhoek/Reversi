@@ -10,7 +10,7 @@ namespace Reversi
     class Game
     {
         Board board;
-        Player[] players = new Player[2];
+        public Player[] players = new Player[2];
         MoveHandler moveHandler;
         public Player currentPlayer;
 
@@ -20,11 +20,6 @@ namespace Reversi
             Console.WriteLine("Current player: " + currentPlayer.color); 
             board = new Board(this, boardWidth, boardHight);
             moveHandler = new MoveHandler(this, board);
-        }
-
-        public Player[] Players
-        {
-            get { return players; }
         }
 
         public Player getPlayer(int playerNr)
