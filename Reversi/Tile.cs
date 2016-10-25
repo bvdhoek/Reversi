@@ -27,8 +27,7 @@ namespace Reversi
             {
                 if (Occupied)
                     return owner.color;
-                else
-                    return null;
+                return null;
             }
         }
 
