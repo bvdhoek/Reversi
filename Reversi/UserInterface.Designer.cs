@@ -63,7 +63,7 @@
             this.NewGameButton.TabIndex = 0;
             this.NewGameButton.Text = "New Game";
             this.NewGameButton.UseVisualStyleBackColor = true;
-            this.NewGameButton.Click += new System.EventHandler(this.NewGameButton_Click_1);
+            this.NewGameButton.Click += new System.EventHandler(this.NewGameButton_Click);
             // 
             // UserInterface
             // 
