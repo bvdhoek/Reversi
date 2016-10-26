@@ -50,7 +50,7 @@ namespace Reversi
             List<Point> enclosedTiles = ScanMove(location, player);
             if (enclosedTiles.Any()) {
                 board.UpdateTiles(enclosedTiles);
-                game.currentPlayer.score += enclosedTiles.Count;
+                game.UpdateScores(enclosedTiles.Count);
                 return true;
             }
             return false;
