@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Reversi
 {
@@ -39,12 +35,22 @@ namespace Reversi
             return !moveHandler.AnyMoves(players[0]) && !moveHandler.AnyMoves(players[1]);
         }
 
+        public void UpdateScores(int tilesChanged)
+        {
+            currentPlayer.score += tilesChanged;
+            players[OtherPlayer()].score -= (tilesChanged - 1);
+        }
+
         public void UpdatePlayer()
         {
-            if (Array.IndexOf(players, currentPlayer) == 0)
-                currentPlayer = players[1];
-            else
-                currentPlayer = players[0];
+            currentPlayer = players[OtherPlayer()];
+        }
+        
+        private int OtherPlayer()
+        {
+            if (players[0] == currentPlayer)
+                return 1;
+            return 0;
         }
 
         public Tile[,] getBoard()
