@@ -9,9 +9,9 @@ namespace Reversi
 {
     class Game
     {
-        Board board;
+        private Board board;
         public Player[] players = new Player[2];
-        MoveHandler moveHandler;
+        private MoveHandler moveHandler;
         public Player currentPlayer;
 
         public Game(int boardWidth, int boardHight)

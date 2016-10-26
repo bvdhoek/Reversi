@@ -9,9 +9,9 @@ namespace Reversi
 {
     class MoveHandler
     {
-        Game game;
-        Board board;
-        List<Point> enclosedPoints;
+        private Game game;
+        private Board board;
+        private List<Point> enclosedPoints;
         private const int SCAN_UP = -1, SCAN_LEFT = -1, SCAN_DOWN = 1, SCAN_RIGHT = 1, SCAN_NONE = 0;
 
         public MoveHandler(Game game, Board board)
