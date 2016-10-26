@@ -30,7 +30,7 @@ namespace Reversi
 
         public void MakeMove(Point location)
         {
-            if (moveHandler.MakeMove(location))
+            if (moveHandler.MakeMove(location, currentPlayer))
                 UpdatePlayer();
         }
 
@@ -45,7 +45,6 @@ namespace Reversi
                 currentPlayer = players[1];
             else
                 currentPlayer = players[0];
-            Console.WriteLine("Current player: " + currentPlayer.color);
         }
 
         public Tile[,] getBoard()

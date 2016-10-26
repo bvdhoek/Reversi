@@ -21,19 +21,32 @@ namespace Reversi
 
         public bool AnyMoves(Player player)
         {
-            /*for (int x = 0; x < board.width; x ++) {
-                for (int y = 0; y < board.height; y++)
-                {
-                    if (moveValidator.MoveIsValid(new Point(x, y)))
-                        return true;
-                }
-            }*/
-            return false;
+            return ValidMoves(player).Any();
         }
 
-        public bool MakeMove(Point location)
+        private List<Point> ValidMoves(Player player)
         {
-            List<Point> enclosedTiles = ScanMove(location);
+            List<Point> validMoves = new List<Point>();
+            for (int x = 0; x < board.width; x++)
+            {
+                for (int y = 0; y < board.height; y++)
+                {
+                    Point move = new Point(x, y);
+                    if (ValidMove(move, player))
+                        validMoves.Add(move);
+                }
+            }
+            return validMoves;
+        }
+
+        public bool ValidMove(Point location, Player player)
+        {
+            return ScanMove(location, player).Any();
+        }
+
+        public bool MakeMove(Point location, Player player)
+        {
+            List<Point> enclosedTiles = ScanMove(location, player);
             if (enclosedTiles.Any()) {
                 board.UpdateTiles(enclosedTiles);
                 return true;
@@ -41,7 +54,7 @@ namespace Reversi
             return false;
         }
 
-        public List<Point> ScanMove(Point move)
+        public List<Point> ScanMove(Point move, Player player)
         {
             enclosedPoints = new List<Point>();
             for (int x = -1; x <= 1; x++)
@@ -50,9 +63,9 @@ namespace Reversi
                 {
                     if (x == 0 && y == 0)
                         continue;
-                    List<Point> points = Scan(move, x, y);
+                    List<Point> points = Scan(move, x, y, player);
                     if (points != null)
-                        enclosedPoints.AddRange(Scan(move, x, y));
+                        enclosedPoints.AddRange(Scan(move, x, y, player));
                 }
             }
             if (enclosedPoints.Any())
@@ -60,12 +73,12 @@ namespace Reversi
             return enclosedPoints;
         }
 
-        private List<Point> Scan(Point move, int xDirection, int yDirection)
+        private List<Point> Scan(Point move, int xDirection, int yDirection, Player player)
         {
             List<Point> enclosedPoints = new List<Point>();
             if (!(OutOfBounds(move.X + xDirection, move.Y + yDirection)) 
                 && board.tiles[move.X + xDirection, move.Y + yDirection].owner != null 
-                && board.tiles[move.X + xDirection, move.Y + yDirection].owner != game.currentPlayer
+                && board.tiles[move.X + xDirection, move.Y + yDirection].owner != player
             )
             {
                 enclosedPoints.Add(new Point(move.X + xDirection, move.Y + yDirection));
@@ -73,7 +86,7 @@ namespace Reversi
                 int y = move.Y + 2 * yDirection;
                 while (!OutOfBounds(x, y))
                 {
-                    if (board.tiles[x, y].owner == game.currentPlayer)
+                    if (board.tiles[x, y].owner == player)
                         return enclosedPoints;
                     enclosedPoints.Add(new Point(x, y));
                     x += xDirection;
