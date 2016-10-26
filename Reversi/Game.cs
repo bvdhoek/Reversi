@@ -24,10 +24,14 @@ namespace Reversi
             currentPlayer = players[0];
         }
 
-        public void MakeMove(Point location)
+        public bool MakeMove(Point location)
         {
             if (moveHandler.MakeMove(location, currentPlayer))
+            {
                 UpdatePlayer();
+                return true;
+            }
+            return false;
         }
 
         private bool GameOver()

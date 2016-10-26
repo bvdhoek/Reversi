@@ -90,8 +90,8 @@ namespace Reversi
 
         private void MakeMove(object sender, MouseEventArgs e)
         {
-            game.MakeMove(PixelToLocation(e.Location));
-            board.Invalidate();
+            if (game.MakeMove(PixelToLocation(e.Location)))
+                board.Invalidate();
         }
 
         private void DrawPiece(PaintEventArgs e, int column, int row, Tile tile)
