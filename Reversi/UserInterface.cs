@@ -42,7 +42,7 @@ namespace Reversi
         private void setSizes()
         {
             int borderWidth = (Width - ClientSize.Width) / 2;
-            int titleBarHeight = Height - ClientSize.Height - 2 * borderWidth;
+            int titleBarHeight = Height - ClientSize.Height - borderWidth;
             userControlPanel.Width = Width - 2 * borderWidth;
             board.Width = Width - 2 * borderWidth;
             board.Height = Height - userControlPanel.Height - titleBarHeight - borderWidth;
@@ -54,13 +54,14 @@ namespace Reversi
         {
             int columnWidth = board.Width / columnCount;
             int rowHeight = board.Height / rowCount;
+            e.Graphics.FillRectangle(new SolidBrush(Color.Green), new Rectangle(new Point(0, 0), new Size(columnCount * columnWidth, rowCount * rowHeight)));
             for (int row = 0; row <= rowCount; row++)
             {
                 e.Graphics.DrawLine(
                     new Pen(
                         Color.Black),
                         new Point(0, row * rowHeight),
-                        new Point(board.Width, row * rowHeight)
+                        new Point(columnCount*columnWidth, row * rowHeight)
                     );
                 for (int column = 0; column <= columnCount; column++)
                 {
@@ -68,7 +69,7 @@ namespace Reversi
                     new Pen(
                         Color.Black),
                         new Point(column * columnWidth, 0),
-                        new Point(column * columnWidth, board.Height)
+                        new Point(column * columnWidth, rowCount*rowHeight)
                     );
                 }
             }

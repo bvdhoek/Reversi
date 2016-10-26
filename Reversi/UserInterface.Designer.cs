@@ -43,7 +43,7 @@
             // board
             // 
             this.board.AutoSize = true;
-            this.board.BackColor = System.Drawing.Color.White;
+            this.board.BackColor = System.Drawing.Color.Transparent;
             this.board.Location = new System.Drawing.Point(0, 100);
             this.board.Margin = new System.Windows.Forms.Padding(0);
             this.board.Name = "board";
