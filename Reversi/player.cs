@@ -12,10 +12,10 @@ namespace Reversi
         public Color color;
         public int score;
 
-        public Player(Color color)
+        public Player(Color color, int score)
         {
             this.color = color;
-            score = 0;
+            this.score = score;
         }
     }
 }

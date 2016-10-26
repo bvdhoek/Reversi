@@ -23,8 +23,8 @@ namespace Reversi
 
         private void initPlayers()
         {
-            players[0] = new Player(Color.Black);
-            players[1] = new Player(Color.Red);
+            players[0] = new Player(Color.Black, 2);
+            players[1] = new Player(Color.Red, 2);
             currentPlayer = players[0];
         }
 
