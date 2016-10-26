@@ -30,14 +30,17 @@
         {
             this.userControlPanel = new System.Windows.Forms.Panel();
             this.board = new System.Windows.Forms.Panel();
+            this.NewGameButton = new System.Windows.Forms.Button();
+            this.userControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // userControlPanel
             // 
             this.userControlPanel.AutoSize = true;
+            this.userControlPanel.Controls.Add(this.NewGameButton);
             this.userControlPanel.Location = new System.Drawing.Point(0, 0);
             this.userControlPanel.Name = "userControlPanel";
-            this.userControlPanel.Size = new System.Drawing.Size(100, 100);
+            this.userControlPanel.Size = new System.Drawing.Size(440, 97);
             this.userControlPanel.TabIndex = 0;
             // 
             // board
@@ -52,6 +55,16 @@
             this.board.Paint += new System.Windows.Forms.PaintEventHandler(this.drawBoard);
             this.board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MakeMove);
             // 
+            // NewGameButton
+            // 
+            this.NewGameButton.Location = new System.Drawing.Point(73, 26);
+            this.NewGameButton.Name = "NewGameButton";
+            this.NewGameButton.Size = new System.Drawing.Size(105, 39);
+            this.NewGameButton.TabIndex = 0;
+            this.NewGameButton.Text = "New Game";
+            this.NewGameButton.UseVisualStyleBackColor = true;
+            this.NewGameButton.Click += new System.EventHandler(this.NewGameButton_Click_1);
+            // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -62,6 +75,7 @@
             this.Name = "UserInterface";
             this.Text = "Reversi";
             this.ResizeEnd += new System.EventHandler(this.resize);
+            this.userControlPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -71,6 +85,7 @@
 
         private System.Windows.Forms.Panel userControlPanel;
         private System.Windows.Forms.Panel board;
+        private System.Windows.Forms.Button NewGameButton;
     }
 }
 

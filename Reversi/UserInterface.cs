@@ -95,6 +95,12 @@ namespace Reversi
                 board.Invalidate();
         }
 
+        private void NewGameButton_Click_1(object sender, EventArgs e)
+        {
+            game.NewGame();
+            board.Invalidate();
+        }
+
         private void DrawPiece(PaintEventArgs e, int column, int row, Tile tile)
         {
             if (tile.owner != null)
