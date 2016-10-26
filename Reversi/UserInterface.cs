@@ -92,6 +92,7 @@ namespace Reversi
         {
             if (game.MakeMove(PixelToLocation(e.Location)))
                 board.Invalidate();
+            help = !help;
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
