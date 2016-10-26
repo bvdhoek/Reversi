@@ -1,54 +1,65 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Reversi
 {
     class Game
     {
-        Board board;
-        bool player;
-        int boardWidth, boardHight;
+        private Board board;
+        public Player[] players = new Player[2];
+        private MoveHandler moveHandler;
+        public Player currentPlayer;
 
         public Game(int boardWidth, int boardHight)
         {
-            player = true;
-            this.boardWidth = boardWidth;
-            this.boardHight = boardHight;
-            board = new Board(boardWidth, boardHight);
+            initPlayers();
+            board = new Board(this, boardWidth, boardHight);
+            moveHandler = new MoveHandler(this, board);
         }
 
-        public void MakeMove(Point location)
+        private void initPlayers()
         {
-            if (board.MakeMove(location, player))
-                updatePlayer();
+            players[0] = new Player(Color.Black, 2);
+            players[1] = new Player(Color.Red, 2);
+            currentPlayer = players[0];
+        }
+
+        public bool MakeMove(Point location)
+        {
+            if (moveHandler.MakeMove(location, currentPlayer))
+            {
+                UpdatePlayer();
+                return true;
+            }
+            return false;
         }
 
         private bool GameOver()
         {
-            bool gameOver = false;
-            for (int column = 0; column < boardWidth; column++)
-            {
-                for (int row = 0; row < boardHight; row++)
-                {
-                    if (board.ValidMove(new Point(column, row)))
-                        gameOver = true;
-                }
-            }
-            return gameOver;
+            return !moveHandler.AnyMoves(players[0]) && !moveHandler.AnyMoves(players[1]);
         }
 
-        private void updatePlayer()
+        public void UpdateScores(int tilesChanged)
         {
-            player = !player;
+            currentPlayer.score += tilesChanged;
+            players[OtherPlayer()].score -= (tilesChanged - 1);
         }
 
-        public bool?[,] getBoard()
+        public void UpdatePlayer()
         {
-            return board.toA();
+            currentPlayer = players[OtherPlayer()];
+        }
+        
+        private int OtherPlayer()
+        {
+            if (players[0] == currentPlayer)
+                return 1;
+            return 0;
+        }
+
+        public Tile[,] getBoard()
+        {
+            return board.tiles;
         }
     }
 }
