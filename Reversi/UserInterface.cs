@@ -25,11 +25,6 @@ namespace Reversi
             setSizes();
         }
 
-        private void HelpButton_Click(object sender, EventArgs e)
-        {
-            help = !help;
-        }
-
         private void resize(object sender, EventArgs e)
         {
             setSizes();
@@ -108,6 +103,12 @@ namespace Reversi
         private void DrawPiece(PaintEventArgs e, SolidBrush brush, int column, int row, Tile tile)
         {
             e.Graphics.FillEllipse(brush, new Rectangle(new Point(column * boxWidth, row * boxHeight), new Size(boxWidth, boxHeight)));
+        }
+
+        private void HelpButton_Click(object sender, EventArgs e)
+        {
+            help = !help;
+            board.Invalidate();
         }
 
         private void DrawPiece(PaintEventArgs e, int column, int row, int reducedWidth, int reducedHeight)

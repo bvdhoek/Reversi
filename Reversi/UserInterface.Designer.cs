@@ -29,19 +29,31 @@
         private void InitializeComponent()
         {
             this.userControlPanel = new System.Windows.Forms.Panel();
-            this.board = new System.Windows.Forms.Panel();
             this.NewGameButton = new System.Windows.Forms.Button();
+            this.board = new System.Windows.Forms.Panel();
+            this.HelpButton = new System.Windows.Forms.Button();
             this.userControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // userControlPanel
             // 
             this.userControlPanel.AutoSize = true;
+            this.userControlPanel.Controls.Add(this.HelpButton);
             this.userControlPanel.Controls.Add(this.NewGameButton);
             this.userControlPanel.Location = new System.Drawing.Point(0, 0);
             this.userControlPanel.Name = "userControlPanel";
             this.userControlPanel.Size = new System.Drawing.Size(440, 97);
             this.userControlPanel.TabIndex = 0;
+            // 
+            // NewGameButton
+            // 
+            this.NewGameButton.Location = new System.Drawing.Point(73, 26);
+            this.NewGameButton.Name = "NewGameButton";
+            this.NewGameButton.Size = new System.Drawing.Size(105, 39);
+            this.NewGameButton.TabIndex = 0;
+            this.NewGameButton.Text = "New Game";
+            this.NewGameButton.UseVisualStyleBackColor = true;
+            this.NewGameButton.Click += new System.EventHandler(this.NewGameButton_Click);
             // 
             // board
             // 
@@ -55,15 +67,15 @@
             this.board.Paint += new System.Windows.Forms.PaintEventHandler(this.drawBoard);
             this.board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MakeMove);
             // 
-            // NewGameButton
+            // HelpButton
             // 
-            this.NewGameButton.Location = new System.Drawing.Point(73, 26);
-            this.NewGameButton.Name = "NewGameButton";
-            this.NewGameButton.Size = new System.Drawing.Size(105, 39);
-            this.NewGameButton.TabIndex = 0;
-            this.NewGameButton.Text = "New Game";
-            this.NewGameButton.UseVisualStyleBackColor = true;
-            this.NewGameButton.Click += new System.EventHandler(this.NewGameButton_Click);
+            this.HelpButton.Location = new System.Drawing.Point(262, 26);
+            this.HelpButton.Name = "HelpButton";
+            this.HelpButton.Size = new System.Drawing.Size(102, 39);
+            this.HelpButton.TabIndex = 1;
+            this.HelpButton.Text = "Help";
+            this.HelpButton.UseVisualStyleBackColor = true;
+            this.HelpButton.Click += new System.EventHandler(this.HelpButton_Click);
             // 
             // UserInterface
             // 
@@ -86,6 +98,7 @@
         private System.Windows.Forms.Panel userControlPanel;
         private System.Windows.Forms.Panel board;
         private System.Windows.Forms.Button NewGameButton;
+        private System.Windows.Forms.Button HelpButton;
     }
 }
 
