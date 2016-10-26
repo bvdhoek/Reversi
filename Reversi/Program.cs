@@ -16,7 +16,7 @@ namespace Reversi
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UserInterface());
+            Application.Run(new UserInterface(new Game(6, 6)));
         }
     }
 }

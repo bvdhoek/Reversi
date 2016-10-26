@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace Reversi
 {
-    public partial class UserInterface : Form
+    partial class UserInterface : Form
     {
         private const int rowCount = 6, columnCount = 6;
-        Game g;
+        Game game;
         int boxWidth, boxHeight;
 
-        public UserInterface()
+        public UserInterface(Game game)
         {
+            this.game = game;
             InitializeComponent();
             setSizes();
-            g = new Game(rowCount, columnCount);
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
@@ -77,30 +77,28 @@ namespace Reversi
 
         private void drawPieces(PaintEventArgs e)
         {
-            bool?[,] board = g.getBoard();
-            for (int column = 0; column < columnCount; column++)
+            Tile[,] board = game.getBoard();
+            for (int row = 0; row < rowCount; row++)
             {
-                for (int row = 0; row < rowCount; row++)
+                for (int column = 0; column < columnCount; column++)
                 {
-                    DrawPiece(e, column, row, board[column, row]);
+                    DrawPiece(e, row, column, board[row, column]);
                 }
             }
+            Console.WriteLine("current player: " + game.currentPlayer.color);
         }
 
         private void MakeMove(object sender, MouseEventArgs e)
         {
-            g.MakeMove(PixelToLocation(e.Location));
+            game.MakeMove(PixelToLocation(e.Location));
             board.Invalidate();
         }
 
-        private void DrawPiece(PaintEventArgs e, int column, int row, bool? player)
+        private void DrawPiece(PaintEventArgs e, int column, int row, Tile tile)
         {
-            Color color = Color.Red;
-            if (player != null)
+            if (tile.owner != null)
             {
-                if ((bool) player)
-                    color = Color.Black;
-                e.Graphics.FillEllipse(new SolidBrush(color), new Rectangle(new Point(column * boxWidth, row * boxHeight), new Size(boxWidth, boxHeight)));
+                e.Graphics.FillEllipse(new SolidBrush(tile.owner.color), new Rectangle(new Point(column * boxWidth, row * boxHeight), new Size(boxWidth, boxHeight)));
             }
         }
 
