@@ -25,7 +25,7 @@ namespace Reversi
             return ValidMoves(player).Any();
         }
 
-        private List<Point> ValidMoves(Player player)
+        public List<Point> ValidMoves(Player player)
         {
             List<Point> validMoves = new List<Point>();
             for (int x = 0; x < board.width; x++)
@@ -40,7 +40,7 @@ namespace Reversi
             return validMoves;
         }
 
-        public bool ValidMove(Point location, Player player)
+        private bool ValidMove(Point location, Player player)
         {
             return ScanMove(location, player).Any();
         }

@@ -15,9 +15,11 @@ namespace Reversi
         private const int rowCount = 6, columnCount = 6;
         Game game;
         int boxWidth, boxHeight;
+        bool help;
 
         public UserInterface(Game game)
         {
+            help = false;
             this.game = game;
             InitializeComponent();
             setSizes();
@@ -30,7 +32,7 @@ namespace Reversi
 
         private void HelpButton_Click(object sender, EventArgs e)
         {
-
+            help = !help;
         }
 
         private void resize(object sender, EventArgs e)
@@ -77,15 +79,22 @@ namespace Reversi
 
         private void drawPieces(PaintEventArgs e)
         {
-            Tile[,] board = game.getBoard();
             for (int row = 0; row < rowCount; row++)
             {
                 for (int column = 0; column < columnCount; column++)
                 {
-                    DrawPiece(e, row, column, board[row, column]);
+                    Tile t = game.board.tiles[row, column];
+                    if (t.owner != null)
+                        DrawPiece(e, new SolidBrush((Color) t.PieceColor) , row, column, t);
                 }
             }
-            Console.WriteLine("current player: " + game.currentPlayer.color);
+            if (help)
+            {
+                foreach (Point p in game.ValidMoves(game.currentPlayer))
+                {
+                    DrawPiece(e, p.X, p.Y, 20, 20);
+                }
+            }
         }
 
         private void MakeMove(object sender, MouseEventArgs e)
@@ -94,12 +103,14 @@ namespace Reversi
                 board.Invalidate();
         }
 
-        private void DrawPiece(PaintEventArgs e, int column, int row, Tile tile)
+        private void DrawPiece(PaintEventArgs e, SolidBrush brush, int column, int row, Tile tile)
         {
-            if (tile.owner != null)
-            {
-                e.Graphics.FillEllipse(new SolidBrush(tile.owner.color), new Rectangle(new Point(column * boxWidth, row * boxHeight), new Size(boxWidth, boxHeight)));
-            }
+            e.Graphics.FillEllipse(new SolidBrush(tile.owner.color), new Rectangle(new Point(column * boxWidth, row * boxHeight), new Size(boxWidth, boxHeight)));
+        }
+
+        private void DrawPiece(PaintEventArgs e, int column, int row, int reducedWidth, int reducedHeight)
+        {
+            e.Graphics.DrawEllipse(new Pen(Color.Black), new Rectangle(new Point(column * boxWidth + (int) (0.5 * reducedWidth), row * boxHeight + (int) (0.5 * reducedHeight)), new Size(boxWidth - reducedWidth, boxHeight - reducedHeight)));
         }
 
         private Point PixelToLocation(Point location)

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace Reversi
 {
     class Game
     {
-        private Board board;
+        public Board board;
         public Player[] players = new Player[2];
         private MoveHandler moveHandler;
         public Player currentPlayer;
@@ -15,6 +16,11 @@ namespace Reversi
             initPlayers();
             board = new Board(this, boardWidth, boardHight);
             moveHandler = new MoveHandler(this, board);
+        }
+
+        public List<Point> ValidMoves(Player player)
+        {
+            return moveHandler.ValidMoves(player);
         }
 
         private void initPlayers()
@@ -55,11 +61,6 @@ namespace Reversi
             if (players[0] == currentPlayer)
                 return 1;
             return 0;
-        }
-
-        public Tile[,] getBoard()
-        {
-            return board.tiles;
         }
     }
 }
