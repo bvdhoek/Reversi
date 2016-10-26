@@ -30,6 +30,16 @@ namespace Reversi
             currentPlayer = players[0];
         }
 
+        public void NewGame()
+        {
+            Board newBoard = new Board(this, board.width, board.height);
+            MoveHandler newMoveHandler = new MoveHandler(this, newBoard);
+            board = newBoard;
+            moveHandler = newMoveHandler;
+            players[0].score = 2;
+            players[1].score = 2;
+        }
+
         public bool MakeMove(Point location)
         {
             if (moveHandler.MakeMove(location, currentPlayer))
