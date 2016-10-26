@@ -29,25 +29,59 @@
         private void InitializeComponent()
         {
             this.userControlPanel = new System.Windows.Forms.Panel();
+            this.score2 = new System.Windows.Forms.Label();
+            this.score1 = new System.Windows.Forms.Label();
+            this.HelpButton = new System.Windows.Forms.Button();
             this.NewGameButton = new System.Windows.Forms.Button();
             this.board = new System.Windows.Forms.Panel();
-            this.HelpButton = new System.Windows.Forms.Button();
+            this.playerturn = new System.Windows.Forms.Label();
             this.userControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // userControlPanel
             // 
             this.userControlPanel.AutoSize = true;
+            this.userControlPanel.Controls.Add(this.playerturn);
+            this.userControlPanel.Controls.Add(this.score2);
+            this.userControlPanel.Controls.Add(this.score1);
             this.userControlPanel.Controls.Add(this.HelpButton);
             this.userControlPanel.Controls.Add(this.NewGameButton);
             this.userControlPanel.Location = new System.Drawing.Point(0, 0);
             this.userControlPanel.Name = "userControlPanel";
-            this.userControlPanel.Size = new System.Drawing.Size(440, 97);
+            this.userControlPanel.Size = new System.Drawing.Size(440, 163);
             this.userControlPanel.TabIndex = 0;
+            // 
+            // score2
+            // 
+            this.score2.AutoSize = true;
+            this.score2.Location = new System.Drawing.Point(70, 107);
+            this.score2.Name = "score2";
+            this.score2.Size = new System.Drawing.Size(46, 17);
+            this.score2.TabIndex = 3;
+            this.score2.Text = "label2";
+            // 
+            // score1
+            // 
+            this.score1.AutoSize = true;
+            this.score1.Location = new System.Drawing.Point(70, 79);
+            this.score1.Name = "score1";
+            this.score1.Size = new System.Drawing.Size(38, 17);
+            this.score1.TabIndex = 2;
+            this.score1.Text = "label";
+            // 
+            // HelpButton
+            // 
+            this.HelpButton.Location = new System.Drawing.Point(241, 26);
+            this.HelpButton.Name = "HelpButton";
+            this.HelpButton.Size = new System.Drawing.Size(102, 39);
+            this.HelpButton.TabIndex = 1;
+            this.HelpButton.Text = "Help";
+            this.HelpButton.UseVisualStyleBackColor = true;
+            this.HelpButton.Click += new System.EventHandler(this.HelpButton_Click);
             // 
             // NewGameButton
             // 
-            this.NewGameButton.Location = new System.Drawing.Point(73, 26);
+            this.NewGameButton.Location = new System.Drawing.Point(102, 26);
             this.NewGameButton.Name = "NewGameButton";
             this.NewGameButton.Size = new System.Drawing.Size(105, 39);
             this.NewGameButton.TabIndex = 0;
@@ -59,7 +93,7 @@
             // 
             this.board.AutoSize = true;
             this.board.BackColor = System.Drawing.Color.Transparent;
-            this.board.Location = new System.Drawing.Point(0, 100);
+            this.board.Location = new System.Drawing.Point(0, 181);
             this.board.Margin = new System.Windows.Forms.Padding(0);
             this.board.Name = "board";
             this.board.Size = new System.Drawing.Size(100, 100);
@@ -67,15 +101,14 @@
             this.board.Paint += new System.Windows.Forms.PaintEventHandler(this.drawBoard);
             this.board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MakeMove);
             // 
-            // HelpButton
+            // playerturn
             // 
-            this.HelpButton.Location = new System.Drawing.Point(262, 26);
-            this.HelpButton.Name = "HelpButton";
-            this.HelpButton.Size = new System.Drawing.Size(102, 39);
-            this.HelpButton.TabIndex = 1;
-            this.HelpButton.Text = "Help";
-            this.HelpButton.UseVisualStyleBackColor = true;
-            this.HelpButton.Click += new System.EventHandler(this.HelpButton_Click);
+            this.playerturn.AutoSize = true;
+            this.playerturn.Location = new System.Drawing.Point(70, 135);
+            this.playerturn.Name = "playerturn";
+            this.playerturn.Size = new System.Drawing.Size(46, 17);
+            this.playerturn.TabIndex = 4;
+            this.playerturn.Text = "label1";
             // 
             // UserInterface
             // 
@@ -88,6 +121,7 @@
             this.Text = "Reversi";
             this.ResizeEnd += new System.EventHandler(this.resize);
             this.userControlPanel.ResumeLayout(false);
+            this.userControlPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,6 +133,9 @@
         private System.Windows.Forms.Panel board;
         private System.Windows.Forms.Button NewGameButton;
         private System.Windows.Forms.Button HelpButton;
+        private System.Windows.Forms.Label score2;
+        private System.Windows.Forms.Label score1;
+        private System.Windows.Forms.Label playerturn;
     }
 }
 

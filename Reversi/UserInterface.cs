@@ -23,6 +23,7 @@ namespace Reversi
             this.game = game;
             InitializeComponent();
             setSizes();
+            DrawInfo();
         }
 
         private void resize(object sender, EventArgs e)
@@ -91,8 +92,23 @@ namespace Reversi
         private void MakeMove(object sender, MouseEventArgs e)
         {
             if (game.MakeMove(PixelToLocation(e.Location)))
+            {
                 board.Invalidate();
-            help = !help;
+                help = false;
+                DrawInfo();
+            }
+        }
+
+        private void DrawInfo()
+        {
+            score1.Text = "Score player 1 (" + game.players[0].color + ") : " + game.players[0].score;
+            score1.Invalidate();
+
+            score2.Text = "Score player 2 (" + game.players[1].color + ") : " + game.players[1].score;
+            score2.Invalidate();
+
+            playerturn.Text = "Turn Player: " + (Array.IndexOf(game.players, game.currentPlayer) + 1);
+            playerturn.Invalidate();
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
