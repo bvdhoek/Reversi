@@ -35,10 +35,10 @@ namespace Reversi
                     tiles[row, column] = new Tile(null);
                 }
             }
-            tiles[width / 2 - 1, height / 2 - 1] = new Tile(game.players[0]);
-            tiles[width / 2, height / 2 - 1] = new Tile(game.players[1]);
-            tiles[width / 2 - 1, height / 2] = new Tile(game.players[1]);
-            tiles[width / 2, height / 2] = new Tile(game.players[0]);
+            tiles[width / 2 - 1, height / 2 - 1].owner = game.players[0];
+            tiles[width / 2, height / 2 - 1].owner = game.players[1];
+            tiles[width / 2 - 1, height / 2].owner = game.players[1];
+            tiles[width / 2, height / 2].owner = game.players[0];
         }
 
         public void UpdateTiles(List<Point> tiles)
