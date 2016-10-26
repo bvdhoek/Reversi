@@ -12,7 +12,9 @@ namespace Reversi
         private Game game;
         private Board board;
         private List<Point> enclosedPoints;
-        private const int SCAN_UP = -1, SCAN_LEFT = -1, SCAN_DOWN = 1, SCAN_RIGHT = 1, SCAN_NONE = 0;
+        private readonly int[] HorizontalDirections = { -1, 0, 1 };
+        private readonly int[] VerticalDirections = { -1, 0, 1 };
+        private int NoDirection = 0;
 
         public MoveHandler(Game game, Board board)
         {
@@ -59,15 +61,15 @@ namespace Reversi
         public List<Point> ScanMove(Point move, Player player)
         {
             enclosedPoints = new List<Point>();
-            for (int directionX = SCAN_LEFT; directionX <= SCAN_RIGHT; directionX++)
+            foreach (int horizontalDirection in HorizontalDirections)
             {
-                for (int directionY = SCAN_UP; directionY <= SCAN_DOWN; directionY++)
+                foreach (int verticalDirection in VerticalDirections)
                 {
-                    if (directionX == SCAN_NONE && directionY == SCAN_NONE)
+                    if (horizontalDirection == NoDirection && verticalDirection == NoDirection)
                         continue;
-                    List<Point> points = Scan(move, directionX, directionY, player);
+                    List<Point> points = Scan(move, horizontalDirection, verticalDirection, player);
                     if (points != null)
-                        enclosedPoints.AddRange(Scan(move, directionX, directionY, player));
+                        enclosedPoints.AddRange(Scan(move, horizontalDirection, verticalDirection, player));
                 }
             }
             if (enclosedPoints.Any())
