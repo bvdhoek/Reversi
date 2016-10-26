@@ -23,7 +23,7 @@ namespace Reversi
         /* everything will be empty except for the four tiles in the center of the board
          * null null null null
          * null black red null
-         * null black red null
+         * null red black null
          * null null null null
         */
         private void initBoard()
