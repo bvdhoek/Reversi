@@ -52,7 +52,6 @@ namespace Reversi
                 help = false;
                 gameOver = game.GameOver();
                 board.Invalidate();
-                game.UpdatePlayer();
                 DrawInfo();
                 ShowNotifications();
             }
@@ -94,7 +93,7 @@ namespace Reversi
         private void DrawBoardBackground(PaintEventArgs e)
         {
             e.Graphics.FillRectangle(
-                new SolidBrush(Color.Green),
+                new SolidBrush(Color.FromArgb(3, 164, 16)),
                 new Rectangle(new Point(0, 0),
                 new Size(columnCount * boxWidth, rowCount * boxHeight))
             );

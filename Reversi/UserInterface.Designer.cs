@@ -54,7 +54,7 @@
             // playerturn
             // 
             this.playerturn.AutoSize = true;
-            this.playerturn.Location = new System.Drawing.Point(70, 135);
+            this.playerturn.Location = new System.Drawing.Point(123, 136);
             this.playerturn.Name = "playerturn";
             this.playerturn.Size = new System.Drawing.Size(46, 17);
             this.playerturn.TabIndex = 4;
@@ -63,7 +63,7 @@
             // score2
             // 
             this.score2.AutoSize = true;
-            this.score2.Location = new System.Drawing.Point(70, 107);
+            this.score2.Location = new System.Drawing.Point(123, 107);
             this.score2.Name = "score2";
             this.score2.Size = new System.Drawing.Size(46, 17);
             this.score2.TabIndex = 3;
@@ -72,7 +72,7 @@
             // score1
             // 
             this.score1.AutoSize = true;
-            this.score1.Location = new System.Drawing.Point(70, 79);
+            this.score1.Location = new System.Drawing.Point(123, 76);
             this.score1.Name = "score1";
             this.score1.Size = new System.Drawing.Size(38, 17);
             this.score1.TabIndex = 2;
@@ -80,7 +80,7 @@
             // 
             // HelpButton
             // 
-            this.HelpButton.Location = new System.Drawing.Point(236, 26);
+            this.HelpButton.Location = new System.Drawing.Point(342, 26);
             this.HelpButton.Name = "HelpButton";
             this.HelpButton.Size = new System.Drawing.Size(102, 39);
             this.HelpButton.TabIndex = 1;
@@ -90,7 +90,7 @@
             // 
             // NewGameButton
             // 
-            this.NewGameButton.Location = new System.Drawing.Point(92, 26);
+            this.NewGameButton.Location = new System.Drawing.Point(195, 26);
             this.NewGameButton.Name = "NewGameButton";
             this.NewGameButton.Size = new System.Drawing.Size(105, 39);
             this.NewGameButton.TabIndex = 0;
