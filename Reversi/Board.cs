@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace Reversi
@@ -40,15 +41,12 @@ namespace Reversi
             tiles[width / 2, height / 2] = new Tile(game.players[0]);
         }
 
-        public void MakeMove(Point move)
+        public void UpdateTiles(List<Point> tiles)
         {
-            tiles[move.X, move.Y] = new Tile(game.currentPlayer);
-            UpdateEnclosed(move);
-        }
-
-        private void UpdateEnclosed(Point move)
-        {
-
+            foreach (Point p in tiles)
+            {
+                this.tiles[p.X, p.Y].owner = game.currentPlayer;
+            } 
         }
     }
 }
