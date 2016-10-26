@@ -17,14 +17,8 @@ namespace Reversi
         public Game(int boardWidth, int boardHight)
         {
             initPlayers();
-            Console.WriteLine("Current player: " + currentPlayer.color); 
             board = new Board(this, boardWidth, boardHight);
             moveHandler = new MoveHandler(this, board);
-        }
-
-        public Player getPlayer(int playerNr)
-        {
-            return players[playerNr];
         }
 
         private void initPlayers()
