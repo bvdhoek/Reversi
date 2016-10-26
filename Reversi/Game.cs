@@ -24,12 +24,12 @@ namespace Reversi
 
         private void initPlayers()
         {
-            players[0] = new Player(Color.Black, 2);
-            players[1] = new Player(Color.Red, 2);
+            players[0] = new Player(Color.Black, 2, "Player 1");
+            players[1] = new Player(Color.Red, 2, "Player 2");
             currentPlayer = players[0];
         }
 
-        public void NewGame()
+        public void Reset()
         {
             Board newBoard = new Board(this, board.width, board.height);
             MoveHandler newMoveHandler = new MoveHandler(this, newBoard);
@@ -49,27 +49,36 @@ namespace Reversi
             return false;
         }
 
-        private bool GameOver()
+        public bool GameOver()
         {
             return !moveHandler.AnyMoves(players[0]) && !moveHandler.AnyMoves(players[1]);
+        }
+
+        public Player Winner()
+        {
+            if (players[0].score > players[1].score)
+                return players[0];
+            else if (players[1].score > players[0].score)
+                return players[1];
+            return null;
         }
 
         public void UpdateScores(int tilesChanged)
         {
             currentPlayer.score += tilesChanged;
-            players[OtherPlayer()].score -= (tilesChanged - 1);
+            OtherPlayer().score -= (tilesChanged - 1);
         }
 
         public void UpdatePlayer()
         {
-            currentPlayer = players[OtherPlayer()];
+            currentPlayer = OtherPlayer();
         }
         
-        private int OtherPlayer()
+        public Player OtherPlayer()
         {
             if (players[0] == currentPlayer)
-                return 1;
-            return 0;
+                return players[1];
+            return players[0];
         }
     }
 }

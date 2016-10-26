@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace Reversi
 {
@@ -11,11 +6,24 @@ namespace Reversi
     {
         public Color color;
         public int score;
+        public string name;
 
-        public Player(Color color, int score)
+        public string ColorString
+        {
+            get
+            {
+                if (color == Color.Black)
+                    return "Black";
+                else
+                    return "Red";
+            }
+        }
+
+        public Player(Color color, int score, string name)
         {
             this.color = color;
             this.score = score;
+            this.name = name;
         }
     }
 }

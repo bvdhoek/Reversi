@@ -56,6 +56,8 @@ namespace Reversi
         public List<Point> ScanMove(Point move, Player player)
         {
             enclosedPoints = new List<Point>();
+            if (game.board.tiles[move.X, move.Y].Occupied)
+                return enclosedPoints;
             for (int directionX = SCAN_LEFT; directionX <= SCAN_RIGHT; directionX++)
             {
                 for (int directionY = SCAN_UP; directionY <= SCAN_DOWN; directionY++)
@@ -77,13 +79,13 @@ namespace Reversi
             List<Point> enclosedPoints = new List<Point>();
             if (!(OutOfBounds(move.X + xDirection, move.Y + yDirection)) 
                 && board.tiles[move.X + xDirection, move.Y + yDirection].owner != null 
-                && board.tiles[move.X + xDirection, move.Y + yDirection].owner != player
+                && board.tiles[move.X + xDirection, move.Y + yDirection].owner == game.OtherPlayer()
             )
             {
                 enclosedPoints.Add(new Point(move.X + xDirection, move.Y + yDirection));
                 int x = move.X + 2 * xDirection;
                 int y = move.Y + 2 * yDirection;
-                while (!OutOfBounds(x, y))
+                while (!(OutOfBounds(x, y) || board.tiles[x, y].owner == null))
                 {
                     if (board.tiles[x, y].owner == player)
                         return enclosedPoints;

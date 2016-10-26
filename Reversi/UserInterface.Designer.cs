@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.userControlPanel = new System.Windows.Forms.Panel();
+            this.playerturn = new System.Windows.Forms.Label();
             this.score2 = new System.Windows.Forms.Label();
             this.score1 = new System.Windows.Forms.Label();
             this.HelpButton = new System.Windows.Forms.Button();
             this.NewGameButton = new System.Windows.Forms.Button();
             this.board = new System.Windows.Forms.Panel();
-            this.playerturn = new System.Windows.Forms.Label();
             this.userControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,8 +48,17 @@
             this.userControlPanel.Controls.Add(this.NewGameButton);
             this.userControlPanel.Location = new System.Drawing.Point(0, 0);
             this.userControlPanel.Name = "userControlPanel";
-            this.userControlPanel.Size = new System.Drawing.Size(440, 163);
+            this.userControlPanel.Size = new System.Drawing.Size(667, 163);
             this.userControlPanel.TabIndex = 0;
+            // 
+            // playerturn
+            // 
+            this.playerturn.AutoSize = true;
+            this.playerturn.Location = new System.Drawing.Point(70, 135);
+            this.playerturn.Name = "playerturn";
+            this.playerturn.Size = new System.Drawing.Size(46, 17);
+            this.playerturn.TabIndex = 4;
+            this.playerturn.Text = "label1";
             // 
             // score2
             // 
@@ -71,7 +80,7 @@
             // 
             // HelpButton
             // 
-            this.HelpButton.Location = new System.Drawing.Point(241, 26);
+            this.HelpButton.Location = new System.Drawing.Point(236, 26);
             this.HelpButton.Name = "HelpButton";
             this.HelpButton.Size = new System.Drawing.Size(102, 39);
             this.HelpButton.TabIndex = 1;
@@ -81,7 +90,7 @@
             // 
             // NewGameButton
             // 
-            this.NewGameButton.Location = new System.Drawing.Point(102, 26);
+            this.NewGameButton.Location = new System.Drawing.Point(92, 26);
             this.NewGameButton.Name = "NewGameButton";
             this.NewGameButton.Size = new System.Drawing.Size(105, 39);
             this.NewGameButton.TabIndex = 0;
@@ -93,7 +102,7 @@
             // 
             this.board.AutoSize = true;
             this.board.BackColor = System.Drawing.Color.Transparent;
-            this.board.Location = new System.Drawing.Point(0, 181);
+            this.board.Location = new System.Drawing.Point(0, 166);
             this.board.Margin = new System.Windows.Forms.Padding(0);
             this.board.Name = "board";
             this.board.Size = new System.Drawing.Size(100, 100);
@@ -101,20 +110,11 @@
             this.board.Paint += new System.Windows.Forms.PaintEventHandler(this.drawBoard);
             this.board.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MakeMove);
             // 
-            // playerturn
-            // 
-            this.playerturn.AutoSize = true;
-            this.playerturn.Location = new System.Drawing.Point(70, 135);
-            this.playerturn.Name = "playerturn";
-            this.playerturn.Size = new System.Drawing.Size(46, 17);
-            this.playerturn.TabIndex = 4;
-            this.playerturn.Text = "label1";
-            // 
             // UserInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 440);
+            this.ClientSize = new System.Drawing.Size(679, 597);
             this.Controls.Add(this.board);
             this.Controls.Add(this.userControlPanel);
             this.Name = "UserInterface";
